@@ -18,7 +18,7 @@ IDE used was the eclipse(Java) and Sublime(Angular)
 ## Getting Started
 To run this project locally, perform the following steps:
 </br>
-* Use this command to download the project to your machine: git clone https://github.com/emmoro/project-spring-boot-with-angular-client.git
+* Use this command to download the project to your machine: git clone https://github.com/emmoro/Project-Spring-Boot-with-Thymeleaf.git
 * To install all of its dependencies and start each app, follow the instructions below:
 * To run the server. Application address: http://localhost:8180/
 ```bash
