@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+	  layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+
+	<section class="layout-content" layout:fragment="corpo">
+		<main role="main">
+
+		<section class="jumbotron text-center">
+			<img class="d-block mx-auto" th:src="@{/image/lion.png}"
+				width="72" height="72">
+			<div class="container">
+				<h1 class="jumbotron-heading">
+						<output th:utext="#{label.name_title}"></output></h1>
+				<p class="lead text-muted">
+					<output th:utext="#{label.instructor_specialty}"></output></p>
+			</div>
+		</section>
+
+		<div class="album py-5 bg-light">
+			<div class="container">
+
+				<div class="d-flex justify-content-center">
+					<div class="col-md-8">
+
+						<div th:replace="fragments/alert :: alert-sucess"></div>
+
+						<form th:action="@{/u/register/save}"
+								th:object="${userSystem}" method="POST" class="was-validated">
+							
+							<div class="mb-3">
+								<label for="email"><output th:utext="#{label.email}"></output></label>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text" 
+												id="validationTooltipUsernamePrepend">@</span>
+									</div>
+									<input type="email" class="form-control" id="email"
+										    th:field="*{email}" placeholder="Email"
+										    aria-describedby="validationTooltipUsernamePrepend" required />
+									<div class="invalid-feedback"><output th:utext="#{label.email_required}"></output></div>
+								</div>
+							</div>
+							
+							<div class="mb-3">
+								<label for="password"><output th:utext="#{label.password}"></output></label> 
+								<input type="password" class="form-control" id="password" maxlength="6"
+										th:field="*{password}" placeholder="Enter your password" required />
+								<div class="invalid-feedback"><output th:utext="#{label.password_required}"></output></div>
+							</div>
+
+							<div class="mb-3">
+								<label for="profiles"><output th:utext="#{label.profile}"></output></label>
+								<select id="profiles" class="custom-select" size="4"
+										th:field="*{profiles}" multiple required>
+									<option value="1"><output th:utext="#{label.administrator}"></output></option>
+									<option value="2"><output th:utext="#{label.instructor}"></output></option>
+									<option value="3"><output th:utext="#{label.student}"></output></option>
+								</select>
+								<input type="hidden" value="0" name="profiles" />
+								<div class="invalid-feedback"><output th:utext="#{label.profile_required}"></output></div>
+							</div>
+							
+							<div class="mb-3">
+								<div class="custom-control custom-switch">
+								  <input type="checkbox" class="custom-control-input" 
+								  			th:field="*{active}" id="active" 
+								  			th:if="${active == true ? 'checked=checked' : ''}" />
+								  <label class="custom-control-label" for="active">
+								  	<output th:utext="#{label.active_registration}"></output></label>
+								</div>
+							</div>
+
+							<input type="hidden" th:field="*{id}"> 
+							<div class="form-group row">
+								<div class="col-sm-10">
+									<button type="submit" class="btn btn-primary"
+										data-toggle="tooltip" data-placement="right" title="save">
+										<i class="fas fa-save"></i>
+									</button>
+								</div>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</main>
+
+	</section>
+	<script	th:src="~{}" th:fragment="js"></script>
+	<script th:inline="javascript" th:fragment="inlinescript">
+		$('#profiles').ready(function(){
+			var profiles = [[${userSystem.profiles}]];
+			$.each(profiles, function(k, v) {
+				$('#profiles option[value="'+ v.id +'"]').attr('selected', 'selected');
+			})
+		});
+	</script>
+</body>
+</html>

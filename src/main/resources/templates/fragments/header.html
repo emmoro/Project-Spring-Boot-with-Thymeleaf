@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<header th:fragment="cabecalho">
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+			<a class="navbar-brand" th:href="@{/}">
+				<output th:utext="#{label.name_gym}"></output></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarCollapse" aria-controls="navbarCollapse"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav mr-auto">
+				
+					<li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')"><a
+						class="btn btn-dark dropdown-toggle" href="#" id="dropdown01"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<output th:utext="#{label.menu_administrator}"></output></a>
+						<div class="dropdown-menu" aria-labelledby="dropdown01">
+							<a class="dropdown-item" th:href="@{/u/new/register/user}">
+								<output th:utext="#{label.menu_user_registration}"></output></a>
+							<a class="dropdown-item" th:href="@{/u/list}">
+								<output th:utext="#{label.menu_user_list}"></output></a>
+						</div>   
+					</li>
+					
+					<li class="nav-item dropdown" sec:authorize="hasAuthority('INSTRUCTOR')"><a  
+						class="btn btn-dark dropdown-toggle" href="#" id="dropdown02"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<output th:utext="#{label.menu_instructor}"></output></a>
+						<div class="dropdown-menu" aria-labelledby="dropdown02">
+							<a class="dropdown-item" th:href="@{/instructors/datas}">
+							<output th:utext="#{label.menu_registration_data}"></output></a>
+							<a class="dropdown-item" th:href="@{/u/edit/password}">
+								<output th:utext="#{label.menu_edit_password}"></output></a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/schedulings/historic/querys}">
+								<output th:utext="#{label.menu_scheduled_appointment}"></output></a>
+						</div>    
+					</li>
+					
+					<li class="nav-item dropdown" sec:authorize="hasAuthority('STUDENT')"><a   
+						class="btn btn-dark dropdown-toggle" href="#" id="dropdown03"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<output th:utext="#{label.menu_student}"></output></a>
+						<div class="dropdown-menu" aria-labelledby="dropdown03">
+							<a class="dropdown-item" th:href="@{/students/datas}">
+								<output th:utext="#{label.menu_registration_data}"></output></a>
+							<a class="dropdown-item" th:href="@{/u/edit/password}">
+								<output th:utext="#{label.menu_edit_password}"></output></a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/schedulings/schedule}">
+								<output th:utext="#{label.menu_schedule_appointment}"></output></a>
+							<a class="dropdown-item" th:href="@{/schedulings/historic/student}">
+								<output th:utext="#{label.menu_history_appointment}"></output></a>
+						</div>
+					</li>					  
+				</ul>
+				
+				<form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
+					<div class="form-check mb-2 mr-sm-2">
+						<a class="btn btn-outline-success my-2 my-sm-0" role="button"
+							th:href="@{/login}">
+							<output th:utext="#{label.menu_login}"></output></a>
+					</div>
+
+				</form>
+
+				<form th:action="@{/logout}"  sec:authorize="isAuthenticated()"
+					  method="post"  class="form-inline mt-2 mt-md-0">
+					<div class="btn-group mb-2 mr-sm-2">
+						<button type="button" class="btn btn-light">
+							<i class="fas fa-user"></i> <span class=""
+								sec:authentication="name">Bob</span>
+						</button>
+						<button type="button"
+							class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						</button>
+						<div class="dropdown-menu">
+							<button type="submit" class="dropdown-item">
+								<output th:utext="#{label.menu_logout}"></output></button>
+						</div>
+					</div>
+				</form>
+				
+				<form
+					method="post"  class="form-inline mt-2 mt-md-0">
+					<div class="btn-group mb-2 mr-sm-2">
+
+						<button type="button" class="btn btn-light">
+							<i class="fas fa-user"></i> 
+							<span class=""><output th:utext="#{label.menu_language}"></output></span>
+						</button>
+	
+						<button type="button"
+							class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						</button>
+						
+						<div class="dropdown-menu">
+						  <a th:href="@{?lang=en}" class="btn btn-light">
+							<span class=""><output th:utext="#{label.language_english}"></output></span>
+						  </a>
+
+						  <a th:href="@{?lang=pt}" class="btn btn-light">
+							<span class=""><output th:utext="#{label.language_portuguese}"></output></span>
+						  </a>
+						</div>
+					</div>
+				</form>
+				
+			</div>
+		</nav>
+	</header>
+</body>
+</html>
