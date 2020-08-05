@@ -26,4 +26,12 @@ mvnw spring-boot:run
 ```
 
 ## Note
-* This project is the Client in Angular, it´s necessary to do download the part of the Server, at the following address:
+* You can view the system in "https://app-system-emmoro.herokuapp.com/", you can use two different login to view the system.
+
+* Admin login:
+Email: admin@admin.com
+password: 123456
+
+* User login:
+Email: student@student.com
+password: 123456
