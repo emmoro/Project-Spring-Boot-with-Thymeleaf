@@ -33,5 +33,5 @@ Email: admin@admin.com</br>
 password: 123456</br>
 
 * User login:</br>
-Email: student@student.com
+Email: student@student.com</br>
 password: 123456</br>
