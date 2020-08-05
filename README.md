@@ -28,10 +28,10 @@ mvnw spring-boot:run
 ## Note
 * You can view the system in "https://app-system-emmoro.herokuapp.com/", you can use two different login to view the system.
 
-* Admin login:
-Email: admin@admin.com
-password: 123456
+* Admin login:</br>
+Email: admin@admin.com</br>
+password: 123456</br>
 
-* User login:
+* User login:</br>
 Email: student@student.com
-password: 123456
+password: 123456</br>
